@@ -34,8 +34,9 @@ def login_handle(request):
 	
 	#加密
 	s1 = sha1()   #创建sha1对象
-	s1.update(upw1.encode('utf8'))  #要先把表单的数据编码
-	upwd = s1.hexdigest
+	s1.update(upwd1.encode('utf8'))  #要先把表单的数据编码
+	upwd2 = s1.hexdigest
+	upwd = upwd2()
 	#验证用户是否正确
 	user = User.objects.filter(uname=uname).filter(upwd=upwd).first();
 	
@@ -86,7 +87,7 @@ def register_handle(request):
 	pwd = s1.hexdigest()
 	#存入数据库
 	user = User()
-	user.name = uname
+	user.uname = uname
 	user.upwd = pwd
 	user.uemail = email
 	user.save()

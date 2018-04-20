@@ -19,6 +19,7 @@ def add(request,gid,gcount):
 	gid = int(gid)
 	gcount = int(gcount)
 	uid = request.session.get('uid')
+	print(uid)
 	carts = Cart.objects.filter(goods_id=gid,user_id=uid)
 	#先判断该用户购物车中是否存在该商品,如果存在仅做数量的加法
 	if len(carts) >=1:
@@ -29,7 +30,7 @@ def add(request,gid,gcount):
 		cart.user_id = uid
 		cart.goods_id = gid
 		cart.count = gcount
-	Cart.save()
+	cart.save()
 	#判断请求方式,是否是ajax,若是返回json格式的商品数量即可
 	if request.is_ajax():
 		count = Cart.objects.filter(user_id=uid).count()
