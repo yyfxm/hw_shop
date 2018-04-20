@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('df_goods.urls')),
     re_path(r'^user/',include('df_user.urls')),
+    re_path(r'^cart/',include('df_user.urls')),
     
 ]

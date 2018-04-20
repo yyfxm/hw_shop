@@ -1,5 +1,5 @@
 {% extends 'base_foot.html' %}
-{% load static %}
+
 {% block body %}
 
 
@@ -24,7 +24,7 @@
 					<span>|</span>
 					<a href="/user/user_center_info">用户中心</a>
 					<span>|</span>
-					<a href="/cart">我的购物车</a>
+					<a href="/cart/user">我的购物车</a>
 					<span>|</span>
 					<a href="/user/user_center_order">我的订单</a>
 				</div>
@@ -34,7 +34,7 @@
 
 
     <div class="search_bar clearfix">
-		<a href="index.html" class="logo fl"><img src="{% static 'df_goods/images/logo.png' %}"></a>
+		<a href="index.html" class="logo fl"><img src="/static/images/logo.png"></a>
         {% if name == 1 %}
 
             <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;{{ title }}</div>{% endif %}

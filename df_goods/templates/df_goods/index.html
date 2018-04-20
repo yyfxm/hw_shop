@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block head %}
-<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/static/js/slide.js"></script>
+<script type="text/javascript" src="{% static 'df_goods/js/jquery-ui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'df_goods/js/slide.js' %}"></script>
 
 
 {% endblock %}
@@ -21,27 +22,27 @@
 
 	<div class="center_con clearfix">
 		<ul class="subnav fl">
-			<li><a href="/list_2_1_1" class="fruit">新鲜水果</a></li>
-			<li><a href="#model02" class="seafood">海鲜水产</a></li>
-			<li><a href="#model03" class="meet">猪牛羊肉</a></li>
-			<li><a href="#model04" class="egg">禽类蛋品</a></li>
-			<li><a href="#model05" class="vegetables">新鲜蔬菜</a></li>
-			<li><a href="#model06" class="ice">速冻食品</a></li>
+			<li><a href="/list_1_1_1" class="fruit">新鲜水果</a></li>
+			<li><a href="/list_2_1_1" class="seafood">海鲜水产</a></li>
+			<li><a href="/list_3_1_1" class="meet">猪牛羊肉</a></li>
+			<li><a href="/list_4_1_1" class="egg">禽类蛋品</a></li>
+			<li><a href="/list_5_1_1" class="vegetables">新鲜蔬菜</a></li>
+			<li><a href="/list_6_1_1" class="ice">速冻食品</a></li>
 		</ul>
 		<div class="slide fl">
 			<ul class="slide_pics">
-				<li><img src="images/slide.jpg" alt="幻灯片"></li>
-				<li><img src="images/slide02.jpg" alt="幻灯片"></li>
-				<li><img src="images/slide03.jpg" alt="幻灯片"></li>
-				<li><img src="images/slide04.jpg" alt="幻灯片"></li>
+				<li><img src="{% static 'df_goods/images/slide.jpg' %}" alt="幻灯片"></li>
+				<li><img src="{% static 'df_goods/images/slide02.jpg' %}" alt="幻灯片"></li>
+				<li><img src="{% static 'df_goods/images/slide03.jpg' %}" alt="幻灯片"></li>
+				<li><img src="{% static 'df_goods/images/slide04.jpg' %}" alt="幻灯片"></li>
 			</ul>
 			<div class="prev"></div>
 			<div class="next"></div>
 			<ul class="points"></ul>
 		</div>
 		<div class="adv fl">
-			<a href="#"><img src="images/adv01.jpg"></a>
-			<a href="#"><img src="images/adv02.jpg"></a>
+			<a href="#"><img src="{% static 'df_goods/images/adv01.jpg' %}"></a>
+			<a href="#"><img src="{% static 'df_goods/images/adv02.jpg' %}"></a>
 		</div>
 	</div>
 
@@ -60,12 +61,12 @@
 		</div>
 
 		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="images/banner01.jpg"></div>
+			<div class="goods_banner fl"><img src="{% static 'df_goods/images/banner01.jpg' %}"></div>
 			<ul class="goods_list fl">
-                {% for goods in type1 %}
+                {% for goods in type0 %}
 				<li>
 					<h4><a href="/{{ goods.id }}">{{ goods.gtitle }}</a></h4>
-					<a href="/{{ goods.id }}"><img src="static/{{ goods.gpic }}"></a>
+					<a href="/{{ goods.id }}"><img src="df_goods/uploadpics/{{ goods.gpic }}"></a>
 					<div class="prize">¥ {{ goods.gprice }}</div>
 				</li>
 				{% endfor %}
@@ -78,35 +79,23 @@
 			<h3 class="fl" id="model02">海鲜水产</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">河虾</a>
-				<a href="#">扇贝</a>				
+				{% for goods in hot %}
+					<a href="#">{{ goods.gtitle|slice:'10' }}</a>
+				{% endfor %}			
 			</div>
 			<a href="#" class="goods_more fr">查看更多 ></a>
 		</div>
 
 		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="images/banner02.jpg"></div>
+			<div class="goods_banner fl"><img src="{% static 'df_goods/images/banner02.jpg' %}"></div>
 			<ul class="goods_list fl">
+				{% for goods in type1 %}
 				<li>
-					<h4><a href="#">青岛野生海捕大青虾</a></h4>
+					<h4><a href="#">{{ goods.gtitle }}</a></h4>
 					<a href="#"><img src="images/goods/goods018.jpg"></a>
-					<div class="prize">¥ 48.00</div>
+					<div class="prize">¥ {{ goods.gprice }}</div>
 				</li>
-				<li>
-					<h4><a href="#">扇贝</a></h4>
-					<a href="#"><img src="images/goods/goods019.jpg"></a>
-					<div class="prize">¥ 46.00</div>
-				</li>
-				<li>
-					<h4><a href="#">冷冻秋刀鱼</a></h4>
-					<a href="#"><img src="images/goods/goods020.jpg"></a>
-					<div class="prize">¥ 19.00</div>
-				</li>
-				<li>
-					<h4><a href="#">基围虾</a></h4>
-					<a href="#"><img src="images/goods/goods021.jpg"></a>
-					<div class="prize">¥ 25.00</div>
-				</li>
+				{% endfor %}
 			</ul>
 		</div>
 	</div>
@@ -116,36 +105,23 @@
 			<h3 class="fl" id="model03">猪牛羊肉</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+				{% for goods in hot %}
+				<a href="#">{{ goods.gtitle|slice:'10' }}</a>
+				{% endfor %}
 			</div>
 			<a href="#" class="goods_more fr">查看更多 ></a>
 		</div>
 
 		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="images/banner03.jpg"></div>
+			<div class="goods_banner fl"><img src="{% static 'df_goods/images/banner03.jpg' %}"></div>
 			<ul class="goods_list fl">
+			{% for goods in type2 %}
 				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
+					<h4><a href="#">{{ goods.gtitle }}</a></h4>
 					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
+					<div class="prize">¥ {{ goods.gprice }}</div>
 				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+			{% endfor %}
 			</ul>
 		</div>
 	</div>
@@ -155,36 +131,23 @@
 			<h3 class="fl" id="model04">禽类蛋品</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+				{% for goods in hot %}
+				<a href="#">{{ goods.gtitle|slice:'10' }}</a>
+				{% endfor %}
 			</div>
 			<a href="#" class="goods_more fr">查看更多 ></a>
 		</div>
 
 		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="images/banner04.jpg"></div>
+			<div class="goods_banner fl"><img src="{% static 'df_goods/images/banner04.jpg' %}"></div>
 			<ul class="goods_list fl">
+			{% for goods in type3 %}
 				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
+					<h4><a href="#">{{ goods.gtitle }}</a></h4>
 					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
+					<div class="prize">¥ {{ goods.gprice }}</div>
 				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+			{% endfor %}
 			</ul>
 		</div>
 	</div>
@@ -194,36 +157,23 @@
 			<h3 class="fl" id="model05">新鲜蔬菜</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+				{% for goods in hot %}
+				<a href="#">{{ goods.gtitle|slice:'10' }}</a>
+				{% endfor %}
 			</div>
 			<a href="#" class="goods_more fr">查看更多 ></a>
 		</div>
 
 		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="images/banner05.jpg"></div>
+			<div class="goods_banner fl"><img src="{% static 'df_goods/images/banner05.jpg' %}"></div>
 			<ul class="goods_list fl">
+			{% for goods in type4 %}
 				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
+					<h4><a href="#">{{ goods.gtitle }}</a></h4>
 					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
+					<div class="prize">¥ {{ goods.gprice }}</div>
 				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+			{% endfor %}
 			</ul>
 		</div>
 	</div>
@@ -233,41 +183,28 @@
 			<h3 class="fl" id="model06">速冻食品</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+				{% for goods in hot %}
+				<a href="#">{{ goods.gtitle|slice:'10' }}</a>
+				{% endfor %}
 			</div>
 			<a href="#" class="goods_more fr">查看更多 ></a>
 		</div>
 
 		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="images/banner06.jpg"></div>
+			<div class="goods_banner fl"><img src="{% static 'df_goods/images/banner06.jpg' %}"></div>
 			<ul class="goods_list fl">
+			{% for goods in type5 %}
 				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
+					<h4><a href="#">{{ goods.gtitle }}</a></h4>
 					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
+					<div class="prize">¥ {{ goods.gprice }}</div>
 				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+			{% endfor %}
 			</ul>
 		</div>
 	</div>
 
-	<script type="text/javascript" src="js/slideshow.js"></script>
+	<script type="text/javascript" src="{% static 'df_goods/js/slideshow.js' %}"></script>
 	<script type="text/javascript">
 		BCSlideshow('focuspic');
 		var oFruit = document.getElementById('fruit_more');

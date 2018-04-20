@@ -11,7 +11,7 @@ class TypeInfo(models.Model):
 
 class GoodInfo(models.Model):
 	gtitle = models.CharField(max_length=50)
-	gpic = models.ImageField(upload_to='df_goods')
+	gpic = models.ImageField(upload_to='df_goods/uploadpics')
 	gprice = models.DecimalField(max_digits=5,decimal_places=2)
 	isDelete = models.BooleanField(default=False)
 	gunit = models.CharField(max_length=20,default='500g')
