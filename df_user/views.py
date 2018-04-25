@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import *
 from .models import User
 from hashlib import sha1
+from df_goods.models import GoodInfo
+from . import user_decorator
+from df_order.models import *
+from django.core.paginator import *
 
 # Create your views here.
 
@@ -58,7 +62,7 @@ def login_handle(request):
 		#如果没有用户,返回错误参数,模板界面,根据错误信息给出提示
 		context = {'error': 1,
 			   'uname':uname}
-		return render(request,'df_user/login.html',context)
+		return render(request,'login.html',context)
 
 #用户退出后处理函数
 def logout(request):
@@ -68,7 +72,7 @@ def logout(request):
 
 #注册页面
 def register(request):
-	return render(request,'df_user/register.html')
+	return render(request,'register.html')
 
 #注册页面处理函数
 def register_handle(request):
@@ -98,4 +102,61 @@ def register_exist(request):
 	uname = request.GET.get('uname')
 	count = User.objects.filter(uname=uname).count()
 	#返回json字典
-	return JsonResponse({'count':count})	
+	return JsonResponse({'count':count})
+
+
+#用户中心
+@user_decorator.login
+def user_center_info(request):
+	username = request.session.get('username')
+	user = User.objects.filter(uname=username).first()
+	
+	#获取最近浏览的商品
+	goodids = request.COOKIES.get('goodids','')  #取cookie中存的记录
+	if goodids != '':
+		goodids1 = goodids.split(',')  #拆分为列表
+		goods_list = []
+		for good_id in goodids1:
+			goods = GoodInfo.objects.filter(pk=good_id).first()
+			goods_list.append(goods)
+	else:
+		goods_list = []
+	context = {'title':'用户中心',
+		   'username':username,
+		   'phone':user.uphone,
+		   'address':user.uadr,
+		   'good_list':goods_list,
+		   'tag':1}
+	return render(request,'user_center_info.html',context)
+
+def user_center_site(request):
+	username = request.session.get('username')
+	user = User.objects.filter(uname=username).first()
+	if request.method == 'POST':
+		adr = request.POST.get('area')
+		username = request.POST.get('user')
+		phone = request.POST.get('phone')
+		user.uadr = adr
+		user.uphone = phone
+		user.urelname = username
+		user.save()
+	context = {'adr':user.uadr,
+		   'user':user.urelname,
+		   'phone':user.uphone,
+		   'tag':3}
+	return render(request,'user_center_site.html',context)
+
+
+def user_center_order(request,pindex):
+	uid = request.session.get('uid')
+	orders = Order.objects.filter(user_id=int(uid)).order_by('-odate')
+	paginator = Paginator(orders,2)
+	page = paginator.page(int(pindex))
+	context = {'tag':2,
+		   'page':page,
+		   'paginator':paginator,
+		  }
+	return render(request,'user_center_order.html',context)
+	
+
+	
