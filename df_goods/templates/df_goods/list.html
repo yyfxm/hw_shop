@@ -11,7 +11,7 @@
 				<ul>
                     {% for goods in news %}
 					<li>
-						<a href="/{{ goods.id }}"><img src="/static/{{ goods.gpic }}"></a>
+						<a href="/{{ goods.id }}"><img src="{{ goods.gpic.url }}"></a>
 						<h4><a href="/{{ goods.id }}">{{ goods.gtitle }}</a></h4>
 						<div class="prize">￥{{ goods.gprice }}</div>
 					</li>
@@ -39,7 +39,7 @@
 				{% for goods in page %}
 
                 <li>
-					<a href="/{{ goods.id }}"><img src="/static/{{ goods.gpic }}"></a>
+					<a href="/{{ goods.id }}"><img src="{{ goods.gpic.url }}"></a>
 					<h4><a href="/{{ goods.id }}">{{ goods.gtitle }}</a></h4>
 					<div class="operate">
 						<span class="prize">￥{{ goods.gprice }}</span>

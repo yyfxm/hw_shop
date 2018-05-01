@@ -22,7 +22,6 @@ def index(request):
 		key2 = 'type' + str(i) + str(i)   #根据点击量倒叙排列
 		context.setdefault(key1,goods1)  #添加键值对
 		context.setdefault(key2,goods2)
-	print(context)
 	return render(request,'df_goods/index.html',context)
 
 #商品列别界面,要接受多个参数

@@ -21,7 +21,7 @@ def login(request):
 		url = request.META['HTTP_REFFERE']
 		#获取头部的来源地址
 	except: url = '/'
-	response = render(request,'df_user/login.html',context)
+	response = render(request,'login.html',context)
 	#将请求的URL存入cookie,然后登录跳回原来的地方
 	response.set_cookie('url',url)  #在response中写入cookie
 	return response

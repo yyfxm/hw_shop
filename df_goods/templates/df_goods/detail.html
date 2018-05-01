@@ -32,7 +32,7 @@
 {% endblock %}
 {% block  center_content %}
 	<div class="goods_detail_con clearfix">
-		<div class="goods_detail_pic fl"><img src="/static/{{ goods.gpic }}"></div>
+		<div class="goods_detail_pic fl"><img src="{{ goods.gpic.url }}"></div>
 
 		<div class="goods_detail_list fr">
 			<h3>{{ goods.gtitle }}</h3>
@@ -64,7 +64,7 @@
 				<ul>
                     {% for goods in news %}
 					<li>
-						<a href="/{{ goods.id }}"><img src="/static/{{ goods.gpic }}"></a>
+						<a href="/{{ goods.id }}"><img src="{{ goods.gpic.url }}"></a>
 						<h4><a href="#">{{ goods.gtitle }}</a></h4>
 						<div class="prize">{{ goods.gprice }}</div>
 					</li>

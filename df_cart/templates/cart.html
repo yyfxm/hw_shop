@@ -145,7 +145,7 @@ function go_order() {
         {% for cart in carts %}
 	<ul class="cart_list_td clearfix" id="{{ cart.id }}">
 		<li class="col01"><input type="checkbox" name="" checked></li>
-		<li class="col02"><img src="/static/{{ cart.goods.gpic }}"></li>
+		<li class="col02"><img src="{{ cart.goods.gpic.url }}"></li>
 		<li class="col03">{{ cart.goods.gtitle }}<br><em>{{ cart.goods.gprice }}元/{{ cart.goods.gunit }}</em></li>
 		<li class="col04">{{ cart.goods.gunit }}</li>
 		<li class="col05">{{ cart.goods.gprice }}元</li>
