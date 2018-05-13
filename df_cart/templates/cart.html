@@ -39,7 +39,7 @@ $(function () {
     });
      $('.minus').click(function () {
         txt=$(this).prev();
-        //数值加1，同时取消 焦点
+        //数值减1，同时取消 焦点
         txt.val(parseFloat(txt.val())-1).blur()
 
     });
@@ -56,7 +56,7 @@ $(function () {
         $.get('/cart/edit_'+id+'_'+count,function (data) {
             if(data.count==0){
                 //修改成功，计算总价
-                alert('ok')
+                //alert('ok')
                 total();
             }
             else {
@@ -124,7 +124,7 @@ function go_order() {
     //删掉最后一个&
 
     s=s.substring(0,s.length-1);
-    alert(s);
+    //alert(s);
     location.href = '/order?'+s ;
 
     }

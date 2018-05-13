@@ -20,7 +20,7 @@
 							<td width="55%">
                                 {% for detail in order.orderdetail_set.all %}
 								<ul class="order_goods_list clearfix">					
-									<li class="col01"><img src="/static/{{ detail.goods.gpic }}"></li>
+									<li class="col01"><img src="{{ detail.goods.gpic.url }}"></li>
 									<li class="col02">{{ detail.goods.gtitle }}<em>{{ detail.goods.gprice }}元/{{ detail.goods.gunit }}</em></li>
 									<li class="col03">{{ detail.count }}</li>
                                   {% comment %}  //用js算出小计{% endcomment %}

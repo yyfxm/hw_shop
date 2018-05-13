@@ -24,7 +24,6 @@ urlpatterns = [
     re_path(r'^user/',include('df_user.urls')),
     path('cart/',include('df_cart.urls')),
     path('order/',include('df_order.urls')),
-    path(r'^search/',include('haystack.urls')),
     
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

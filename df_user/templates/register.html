@@ -1,10 +1,11 @@
 {% extends 'base_foot.html' %}
+{% load static %}
 {% block head %}<script type="text/javascript" src="/static/js/register.js"></script>{% endblock %}
 
 {% block body %}
 	<div class="register_con">
 		<div class="l_con fl">
-			<a class="reg_logo"><img src="/static/images/logo02.png"></a>
+			<a class="reg_logo"><img src="{% static 'df_user/images/logo02.png' %}"></a>
 			<div class="reg_slogan">足不出户  ·  新鲜每一天</div>
 			<div class="reg_banner"></div>
 		</div>
@@ -15,7 +16,7 @@
 				<a href="/user/login">登录</a>
 			</div>
 			<div class="reg_form clearfix">
-				<form action="/user/register_handle"  id='reg_form' method="post">
+				<form action="/user/register_handle/"  id='reg_form' method="post">
                     {% csrf_token %}
 				<ul>
 					<li>

@@ -35,11 +35,11 @@
 			<input type="radio" name="pay_style" checked>
 			<label class="cash">货到付款</label>
 			<input type="radio" name="pay_style">
-			<label class="weixin">微信支付</label>
+			<label class="weixin">微信</label>
 			<input type="radio" name="pay_style">
-			<label class="zhifubao"></label>
+			<label class="zhifubao">支付宝</label>
 			<input type="radio" name="pay_style">
-			<label class="bank">银行卡支付</label>
+			<label class="bank">银行卡</label>
 		</div>
 	</div>
 
@@ -111,7 +111,7 @@
                     'csrfmiddlewaretoken':'{{ csrf_token }}'};
 
 		    //先发请求
-            $.post('/order/push',data,function (res) {
+            $.post('/order/push/',data,function (res) {
                 //成功
                 alert(res);
                 if (res == 'ok'){
