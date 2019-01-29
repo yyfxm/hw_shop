@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':  'hwshop',
 	'USER': 'root',
-	'PASSWORD': 'pass993.',
+	'PASSWORD': '',
 	'HOST': 'localhost',
 	'PORT': '3306',
     }
